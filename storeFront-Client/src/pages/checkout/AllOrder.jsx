@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { getMyOrders } from "../features/order/orderService.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import StatusBar from "../components/order/StatusBar.jsx";
 import {
   Box,
   Typography,
@@ -10,8 +8,10 @@ import {
   Button,
   useTheme,
 } from "@mui/material";
-import FlexBetween from "../components/customMUI/FlexBetween.jsx";
-import OrderView from "../components/order/OrderView.jsx";
+import { getMyOrders } from "../../features/order/orderService.js";
+import StatusBar from "../../components/order/StatusBar.jsx";
+import FlexBetween from "../../components/customMUI/FlexBetween.jsx";
+import OrderView from "../../components/order/OrderView.jsx";
 
 export default function AllOrder() {
   const [orders, setOrders] = useState(null);

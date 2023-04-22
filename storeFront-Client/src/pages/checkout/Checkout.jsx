@@ -13,17 +13,17 @@ import {
   Backdrop,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import FlexBetween from "../components/customMUI/FlexBetween";
-import WidgetWrapper from "../components/customMUI/WidgetWrapper";
+import FlexBetween from "../../components/customMUI/FlexBetween";
+import WidgetWrapper from "../../components/customMUI/WidgetWrapper";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyCart } from "../features/cart/cartSlice";
-import GetAddress from "../components/GetAddress/GetAddress.jsx";
+import { getMyCart } from "../../features/cart/cartSlice";
+import GetAddress from "../../components/GetAddress/GetAddress.jsx";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { createOrder as createOrderAPI } from "../features/order/orderService.js";
-import GetDeliveryMethod from "../components/GetAddress/GetDeliveryMethod";
+import { createOrder as createOrderAPI } from "../../features/order/orderService.js";
+import GetDeliveryMethod from "../../components/GetAddress/GetDeliveryMethod";
 
 export default function Checkout() {
   const token = useSelector((state) => state.auth.user.token);

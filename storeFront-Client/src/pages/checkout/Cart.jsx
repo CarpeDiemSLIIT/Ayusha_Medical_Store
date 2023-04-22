@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyCart, reset } from "../features/cart/cartSlice";
+import { getMyCart, reset } from "../../features/cart/cartSlice";
 import {
   Backdrop,
   Box,
@@ -10,8 +10,8 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import CartItemsTable from "../components/CartItemsTable.jsx";
-import FlexBetween from "../components/customMUI/FlexBetween.jsx";
+import CartItemsTable from "../../components/CartItemsTable.jsx";
+import FlexBetween from "../../components/customMUI/FlexBetween.jsx";
 import { useNavigate } from "react-router";
 export default function Cart() {
   const dispatch = useDispatch();
@@ -30,6 +30,17 @@ export default function Cart() {
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  }
+
   return (
     <div>
       <Typography variant="h1" color="initial">
@@ -42,8 +53,8 @@ export default function Cart() {
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-      ) : cart && cart.cartItems.length > 0 ? (
-        <FlexBetween gap="2rem" sx={{ padding: "5rem" }}>
+      ) : cart && Array.isArray(cart.cartItems) && cart.cartItems.length > 0 ? (
+        <FlexBetween gap="2rem">
           <Box width="70%">
             <CartItemsTable
               items={cart.cartItems}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getOrderById } from "../features/order/orderService.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import StatusBar from "../components/order/StatusBar.jsx";
+import { getOrderById } from "../../features/order/orderService.js";
+import StatusBar from "../../components/order/StatusBar.jsx";
 import {
   Box,
   Typography,
@@ -10,7 +10,7 @@ import {
   Button,
   useTheme,
 } from "@mui/material";
-import FlexBetween from "../components/customMUI/FlexBetween.jsx";
+import FlexBetween from "../../components/customMUI/FlexBetween.jsx";
 
 export default function OrderConfirmationPage() {
   const [order, setOrder] = useState(null);

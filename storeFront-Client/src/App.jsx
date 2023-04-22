@@ -5,12 +5,20 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
-import Cart from "./pages/Cart.jsx";
-import Checkout from "./pages/Checkout.jsx";
-import OrderConfirmationPage from "./pages/OrderConfirmationPage.jsx";
+//pages
+//home
+import Home from "./pages/home/Home.jsx";
+import Catalog from "./pages/home/Catalog.jsx";
+import Product from "./pages/home/Product.jsx";
+import Profile from "./pages/home/Profile.jsx";
+import ProfileView from "./pages/home/ProfileView.jsx";
+
+//checkout things
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import AllOrder from "./pages/AllOrder.jsx";
-import AddToCart from "./pages/AddToCart.jsx";
+import Cart from "./pages/checkout/Cart.jsx";
+import Checkout from "./pages/checkout/Checkout.jsx";
+import OrderConfirmationPage from "./pages/checkout/OrderConfirmationPage.jsx";
+import AllOrder from "./pages/checkout/AllOrder.jsx";
 
 function App() {
   const { user, mode } = useSelector((state) => state.auth);
@@ -32,10 +40,6 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route
-                path="/"
-                element={user ? <AddToCart /> : <Navigate to="/login" />}
-              />
-              <Route
                 path="/checkout"
                 element={user ? <Checkout /> : <Navigate to="/login" />}
               />
@@ -45,14 +49,29 @@ function App() {
                   user ? <OrderConfirmationPage /> : <Navigate to="/login" />
                 }
               />
-              <Route
-                path="/profile/cart"
-                element={user ? <Cart /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/profile/orders"
-                element={user ? <AllOrder /> : <Navigate to="/login" />}
-              />
+              <Route path="/" element={<Home />}>
+                <Route path="/" element={<Catalog />} />
+                <Route
+                  path="product/:productID"
+                  element={user ? <Product /> : <Navigate to="/login" />}
+                />
+                <Route path="/profile" element={<Profile />}>
+                  <Route
+                    path="my"
+                    element={user ? <ProfileView /> : <Navigate to="/login" />}
+                  />
+                  <Route
+                    path="cart"
+                    element={user ? <Cart /> : <Navigate to="/login" />}
+                  />
+                  <Route
+                    path="orders"
+                    element={user ? <AllOrder /> : <Navigate to="/login" />}
+                  />
+                </Route>
+              </Route>
+              {/* profile page  */}
+
               {/* <Route path="orders/*" element={<OrderManagement />} /> */}
             </Routes>
           </PayPalScriptProvider>

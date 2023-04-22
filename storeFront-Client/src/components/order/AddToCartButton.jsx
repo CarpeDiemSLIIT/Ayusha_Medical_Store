@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addNewItem } from "../features/cart/cartSlice";
+import { addNewItem } from "../../features/cart/cartSlice";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -20,18 +20,18 @@ import {
   TextField,
 } from "@mui/material";
 
-export default function AddToCart() {
-  return (
-    <Box display="flex" flexDirection="column">
-      cinnamon capsule
-      <AddToCartButton productID={"643da6ffb3f0f6b8eb566cab"} />
-      Siddhalepa samodagam
-      <AddToCartButton productID={"643da754b3f0f6b8eb566cb5"} />
-      Iramusu Tea
-      <AddToCartButton productID={"643da7ddb3f0f6b8eb566cc9"} />
-    </Box>
-  );
-}
+// export default function AddToCart({}) {
+//   return (
+//     <Box display="flex" flexDirection="column">
+//       cinnamon capsule
+//       <AddToCartButton productID={"643da6ffb3f0f6b8eb566cab"} />
+//       Siddhalepa samodagam
+//       <AddToCartButton productID={"643da754b3f0f6b8eb566cb5"} />
+//       Iramusu Tea
+//       <AddToCartButton productID={"643da7ddb3f0f6b8eb566cc9"} />
+//     </Box>
+//   );
+// }
 
 const AddToCartButton = ({ productID }) => {
   const [open, setOpen] = useState(false);
@@ -117,3 +117,5 @@ const AddToCartButton = ({ productID }) => {
     </>
   );
 };
+
+export default AddToCartButton;
