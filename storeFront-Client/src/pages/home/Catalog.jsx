@@ -78,6 +78,14 @@ const Catalog = () => {
                   <Typography variant="body2" color="text.secondary">
                     ${product.listingPrice}
                   </Typography>
+                  <div>
+                      {[...Array(product.rating)].map((_, i) => (
+                          <span key={i}>&#9733;</span>
+                      ))}
+                      {[...Array(5 - product.rating)].map((_, i) => (
+                          <span key={i}>&#9734;</span>
+                      ))}
+                   </div>
                 </CardContent>
               </CardActionArea>
             </Card>
