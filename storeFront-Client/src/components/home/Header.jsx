@@ -13,6 +13,7 @@ import logo from "/ayusha.svg";
 import FlexBetween from "../customMUI/FlexBetween";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Header = () => {
   const theme = useTheme();
@@ -36,6 +37,7 @@ const Header = () => {
         <img src={logo} alt="logo" height="40px" />
       </Box>
       <FlexBetween width="7rem">
+      <ShoppingCartIcon onClick={() => navigate("/profile/cart")}/>
         <IconButton
           onClick={() => dispatch(setMode())}
           sx={{ fontSize: "25px" }}
@@ -55,6 +57,7 @@ const Header = () => {
 export default Header;
 
 function Profile() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -88,6 +91,12 @@ function Profile() {
           "aria-labelledby": "basic-button",
         }}
       >
+
+<MenuItem
+          onClick={() => navigate("/profile/my")}
+        >
+          Profile
+        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(logout());
@@ -95,6 +104,7 @@ function Profile() {
         >
           Logout
         </MenuItem>
+       
       </Menu>
     </>
   );
