@@ -1,9 +1,9 @@
 import Seller from "../models/Seller.js";
 import bycrypt from "bcrypt";
+import { sendSeller } from "../queues/seller-queue.js";
 
 export const createSeller = async (req, res) => {
   const { firstName, lastName, email, password, phoneNumber } = req.body;
-
   const { id } = req.user;
 
   const salt = await bycrypt.genSalt();
@@ -20,6 +20,7 @@ export const createSeller = async (req, res) => {
     });
 
     const seller = await newSeller.save();
+    sendSeller(seller);
     res.status(201).json(seller);
   } catch (err) {
     res.status(500).json(err);

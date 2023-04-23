@@ -15,6 +15,7 @@ import sellerRoute from "./routes/seller.js";
 import orderRoutes from "./routes/order.js";
 import { newCategory } from "./controllers/categories.js";
 import { verifyToken } from "./middleware/authAdmin.js";
+import { connectQueue } from "./queues/seller-queue.js";
 
 /* configurations */
 dotenv.config();
@@ -64,6 +65,11 @@ app.post(
   verifyToken,
   newCategory
 );
+//TODO remove
+async function test() {
+  await connectQueue();
+}
+test();
 
 /* Routes without files */
 //TODO add /api/admin

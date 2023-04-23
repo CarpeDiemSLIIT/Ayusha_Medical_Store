@@ -65,3 +65,21 @@ export const changePassword = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+// incoming queue request
+export const newSeller = async (data) => {
+  try {
+    console.log("new seller");
+    const newSeller = new Seller({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      phoneNumber: data.phoneNumber,
+      createdBy: data.createdBy,
+    });
+    await newSeller.save();
+  } catch (error) {
+    return console.log({ message: error.message });
+  }
+};
