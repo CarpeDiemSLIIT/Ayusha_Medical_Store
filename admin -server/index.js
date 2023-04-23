@@ -66,10 +66,14 @@ app.post(
   newCategory
 );
 //TODO remove
-async function test() {
-  await connectQueue();
+async function connectQueueCall() {
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
 }
-test();
+connectQueueCall();
 
 /* Routes without files */
 //TODO add /api/admin
