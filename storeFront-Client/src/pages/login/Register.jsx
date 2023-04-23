@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField ,Typography } from "@mui/material";
 import { Login } from "@mui/icons-material";
 import { register, reset } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
@@ -65,12 +65,18 @@ function Register() {
   };
 
   return (
+
     <Box  pt={5}  display="flex"
     justifyContent="center"
     // alignItems="center"
     // minHeight="100vh"
     >
+          
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 15 }}>
+      <Typography fontWeight="bold" fontSize="32px" color="primary">
+          Welcome to Ayusha , Register here
+        </Typography>
+      
         <Stack gap={2} width="150%">
 
         <TextField

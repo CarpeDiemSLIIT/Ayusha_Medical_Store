@@ -16,7 +16,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-          Login Client
+          Login To Ayusha Store
         </Typography>
       </Box>
 
