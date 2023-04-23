@@ -1,8 +1,11 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import Form from "./Form.jsx";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   return (
     <Box>
@@ -26,7 +29,10 @@ const LoginPage = () => {
       >
         <Form />
       </Box>
-      <button>Register</button>
+      <center>
+
+      <p className="text" style={{color: "#063970"}}>New User? <span><Link to="/register" style={{fontWeight:"bold",color: "#063970"}}>Signup</Link></span></p>
+      </center>
     </Box>
   );
 };

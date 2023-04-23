@@ -6,6 +6,7 @@ import { Login } from "@mui/icons-material";
 import { register, reset } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { Stack } from "@mui/system";
+import { Link } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function Register() {
   }, [user, isError, isSuccess, dispatch, navigate, message]);
 
   function onSubmit(e) {
-    
+
     e.preventDefault();
     if (formData.password !== formData.confpassword) {
       toast.error("Passwords do not match");
@@ -134,8 +135,13 @@ function Register() {
           <Button type="submit" variant="contained" >
             Register
           </Button>
+          <center>
+
+<p className="text" style={{color: "#063970"}}>Already have an account? <span><Link to="/login" style={{fontWeight:"bold",color: "#063970"}}>Log in</Link></span></p>
+</center>
         </Stack>
       </form>
+
     </Box>
   );
 }
