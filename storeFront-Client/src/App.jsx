@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Login from "./pages/login/Login.jsx";
+import Register from "./pages/login/Register.jsx";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -39,6 +40,7 @@ function App() {
             <CssBaseline />
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route
                 path="/checkout"
                 element={user ? <Checkout /> : <Navigate to="/login" />}

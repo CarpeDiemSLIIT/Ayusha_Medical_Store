@@ -26,6 +26,7 @@ const LoginPage = () => {
       >
         <Form />
       </Box>
+      <button>Register</button>
     </Box>
   );
 };
