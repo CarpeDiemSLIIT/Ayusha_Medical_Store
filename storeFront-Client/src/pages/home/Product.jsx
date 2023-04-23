@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Box,  Chip, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import StarRating from "../../components/home/StarRating.jsx";
+import "./star.css"
 
 
 
@@ -56,6 +58,7 @@ const Product = () => {
               />
             )}
           </Box>
+          <StarRating />
           <Typography variant="h6">{`$ ${product.listingPrice}`}</Typography>
         <Typography variant="body">{product.description}</Typography>
         </Stack>

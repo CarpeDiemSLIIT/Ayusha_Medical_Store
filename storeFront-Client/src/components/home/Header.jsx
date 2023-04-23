@@ -14,6 +14,7 @@ import FlexBetween from "../customMUI/FlexBetween";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
 
 const Header = () => {
   const theme = useTheme();
@@ -69,7 +70,7 @@ function Profile() {
   };
   return (
     <>
-      <IconButton
+      <PersonIcon
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
@@ -81,7 +82,7 @@ function Profile() {
           // src="/static/images/avatar/1.jpg"
           // sx={{ width: 56, height: 56 }}
         />
-      </IconButton>
+      </PersonIcon>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
