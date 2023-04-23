@@ -2,14 +2,16 @@ import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
+    orderIDinCheckout: {
+      type: String,
+      required: true,
+    },
     userID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Client",
+      type: Object,
       required: true,
     },
     cartID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Cart",
+      type: Object,
       required: true,
       unique: true,
     },
@@ -18,8 +20,7 @@ const orderSchema = mongoose.Schema(
       required: true,
     },
     addressID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Address",
+      type: Object,
       required: true,
     },
     orderTotal: {
@@ -39,6 +40,10 @@ const orderSchema = mongoose.Schema(
     deliveryMethod: {
       type: String,
       default: "DHL",
+      required: true,
+    },
+    shippingCost: {
+      type: Number,
       required: true,
     },
     orderDate: {
