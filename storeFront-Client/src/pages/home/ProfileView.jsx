@@ -64,7 +64,7 @@ const ProfileView = () => {
                 <Grid item xs >
                     <Typography sx={{fontSize: "1.2rem" ,
                                     fontWeight: 'bold' }} textAlign="left">User name</Typography>
-                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">addusrname</Typography>
+                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">Fahmi321</Typography>
                 </Grid>
                 </Grid>
             </StyledPaper>
@@ -84,7 +84,7 @@ const ProfileView = () => {
                 <Grid item xs >
                     <Typography sx={{fontSize: "1.2rem" ,
                                     fontWeight: 'bold' }} textAlign="left">Full name</Typography>
-                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">addfullname</Typography>
+                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">Ahamed Fahmi</Typography>
                 </Grid>
                 </Grid>
             </StyledPaper>
@@ -104,7 +104,7 @@ const ProfileView = () => {
                 <Grid item xs>
                     <Typography sx={{ fontSize: "1.2rem",
                                     fontWeight: 'bold' }} textAlign="left">Email</Typography>
-                    <Typography sx={{ fontSize: "1rem"  }} textAlign="left">addemail</Typography>
+                    <Typography sx={{ fontSize: "1rem"  }} textAlign="left">fahmi432@gmail.com</Typography>
                 </Grid>
                 </Grid>
             </StyledPaper>
@@ -124,7 +124,7 @@ const ProfileView = () => {
                 <Grid item xs>
                     <Typography sx={{ fontSize: "1.2rem",
                                       fontWeight: 'bold'  }} textAlign="left">Mobile</Typography>
-                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">addphonenumber</Typography>
+                    <Typography sx={{ fontSize: "1rem" }} textAlign="left">94765358596</Typography>
                 </Grid>
                 </Grid>
             </StyledPaper>
