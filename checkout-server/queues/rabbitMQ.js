@@ -1,6 +1,7 @@
 import amqp from "amqplib";
 var channel, connection;
 import { changeOrderStatus } from "../controllers/order.js";
+import { createProduct } from "../controllers/product.js";
 
 // call connectQueue function
 export async function connectQueue() {
@@ -16,14 +17,32 @@ export async function connectQueue() {
     await channel.assertQueue("order-queue-change", "direct", {
       durable: true,
     });
-
+    await channel.assertQueue("product-queue-checkoutserver", {
+      durable: true,
+    });
+    await channel.bindQueue(
+      "product-queue-checkoutserver",
+      "product-exchange",
+      ""
+    );
     // incoming messages from checkout server
     channel.consume("order-queue-change", async (data) => {
       const payload = JSON.parse(data.content.toString());
-      console.log(payload);
       switch (payload.event) {
         case "change-status":
           await changeOrderStatus(payload.data);
+          // channel.ack(data);
+          break;
+        default:
+          console.log("No event found");
+          break;
+      }
+    });
+    channel.consume("product-queue-checkoutserver", async (data) => {
+      const payload = JSON.parse(data.content.toString());
+      switch (payload.event) {
+        case "new-product":
+          await createProduct(payload.data);
           channel.ack(data);
           break;
         default:

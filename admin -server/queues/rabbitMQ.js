@@ -17,6 +17,9 @@ export async function connectQueue() {
     await channel.assertQueue("order-queue-change", "direct", {
       durable: true,
     });
+    await channel.assertQueue("order-queue-change", "direct", {
+      durable: true,
+    });
 
     // incoming messages from checkout server
     channel.consume("order-queue-new", async (data) => {
