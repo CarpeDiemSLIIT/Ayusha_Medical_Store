@@ -14,7 +14,7 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-// import PaymentMethod from "../../Assets/Payment-Methods.png";
+import PaymentMethod from "/Payment-Methods.png"
 
 function Link(props) {
   return (
@@ -104,7 +104,7 @@ function Footer() {
               </Typography>
               <Stack p={1} gap={0.5} sx={{ color: "text.secondary" }}>
                 <img
-                  // src={PaymentMethod}
+                  src={PaymentMethod}
                   alt="payment options"
                   style={{ height: "150px", width: "150px" }}
                 />
