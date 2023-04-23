@@ -40,6 +40,7 @@ function Register() {
   }, [user, isError, isSuccess, dispatch, navigate, message]);
 
   function onSubmit(e) {
+    
     e.preventDefault();
     if (formData.password !== formData.confpassword) {
       toast.error("Passwords do not match");

@@ -14,22 +14,44 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login, reset } from "../../features/auth/authSlice";
+import { register, login, reset } from "../../features/auth/authSlice";
 
 const loginSchema = yup.object().shape({
   username: yup.string().required("required"),
   password: yup.string().required("required"),
 });
 
+const registerSchema = yup.object().shape({
+  username: yup.string().required("required"),
+  firstName: yup.string().required("required"),
+  lastName: yup.string().required("required"),
+  email: yup.string().email("invalid email").required("required"),
+  password: yup.string().required("required"),
+  phoneNumber: yup.string().required("required"),
+});
+
 const initialValuesLogin = {
   username: "",
   password: "",
 };
+
+const initialValuesRegister = {
+  username: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  phoneNumber: "",
+};
+
 export default function Form() {
+  const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const isLogin = pageType === "login";
+  const isRegister = pageType === "register";
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
