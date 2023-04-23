@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Client from "../models/Client.js";
+import { sendNewUser } from "../queues/rabbitMQ.js";
 
 /* Register user */
 export const register = async (req, res) => {
@@ -22,6 +23,7 @@ export const register = async (req, res) => {
     });
     // Save user and respond
     const savedClient = await newClient.save();
+    sendNewUser(savedClient);
     res.status(200).json(savedClient);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -47,9 +49,7 @@ export const login = async (req, res) => {
   }
 };
 
-
 //Get user details
-
 
 export const getUserDetails = async (req, res) => {
   try {

@@ -7,6 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import productRoutes from "./routes/product.js";
 import clientRoutes from "./routes/authClient.js";
+import { connectQueue } from "./queues/rabbitMQ.js";
 
 /* configurations */
 
@@ -24,7 +25,15 @@ app.use(cors());
 app.use("/api/store-front/client-auth/", clientRoutes);
 app.use("/api/store-front/product", productRoutes);
 
-//same routes
+//TODO remove
+async function connectQueueCall() {
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
+}
+connectQueueCall();
 
 /* Mongoose setup */
 // eslint-disable-next-line no-undef
