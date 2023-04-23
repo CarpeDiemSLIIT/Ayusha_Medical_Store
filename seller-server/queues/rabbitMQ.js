@@ -15,7 +15,9 @@ export async function connectQueue() {
     // connect to 'test-queue', create one if doesnot exist already
     await channel.assertQueue("seller-queue", "direct", { durable: true });
     await channel.assertQueue("category-queue", "direct", { durable: true });
-    await channel.assertQueue("product-queue", "direct", { durable: true });
+    await channel.assertExchange("product-exchange", "fanout", {
+      durable: true,
+    });
 
     channel.consume("seller-queue", async (data) => {
       const payload = JSON.parse(data.content.toString());
@@ -72,6 +74,7 @@ export const sendEditSellerPassword = async (sellerData) => {
   try {
     await channel.sendToQueue(
       "seller-queue",
+
       Buffer.from(
         JSON.stringify({
           event: "edit-seller-password",
@@ -86,9 +89,11 @@ export const sendEditSellerPassword = async (sellerData) => {
 
 //create product
 export const sendProduct = async (pData) => {
+  // console.log("sendProduct", pData);
   try {
-    await channel.sendToQueue(
-      "product-queue",
+    await channel.publish(
+      "product-exchange",
+      "",
       Buffer.from(
         JSON.stringify({
           event: "new-product",
@@ -104,8 +109,9 @@ export const sendProduct = async (pData) => {
 //edit product
 export const sendEditProduct = async (pData) => {
   try {
-    await channel.sendToQueue(
-      "product-queue",
+    await channel.publish(
+      "product-exchange",
+      "",
       Buffer.from(
         JSON.stringify({
           event: "edit-product",
@@ -120,8 +126,9 @@ export const sendEditProduct = async (pData) => {
 
 export const sendDeleteProduct = async (pData) => {
   try {
-    await channel.sendToQueue(
-      "product-queue",
+    await channel.publish(
+      "product-exchange",
+      "",
       Buffer.from(
         JSON.stringify({
           event: "delete-product",
