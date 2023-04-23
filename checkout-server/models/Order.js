@@ -4,7 +4,7 @@ const orderSchema = mongoose.Schema(
   {
     userID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Client",
       required: true,
     },
     cartID: {

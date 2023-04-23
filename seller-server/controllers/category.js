@@ -8,6 +8,6 @@ export const createCategory = async (data) => {
     });
     await newCategory.save();
   } catch (error) {
-    console.log();
+    console.log(error);
   }
 };
