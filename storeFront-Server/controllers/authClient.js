@@ -46,3 +46,18 @@ export const login = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+
+//Get user details
+
+
+export const getUserDetails = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const client = await Client.findById(id);
+    if (!client) return res.status(400).json({ msg: "Client not found." });
+    res.status(200).json(client);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
