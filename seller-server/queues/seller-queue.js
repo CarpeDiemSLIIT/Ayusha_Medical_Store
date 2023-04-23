@@ -13,10 +13,10 @@ export async function connectQueue() {
 
     // connect to 'test-queue', create one if doesnot exist already
     await channel.assertQueue("seller-queue", "direct", { durable: true });
+    await channel.assertQueue("category-queue", "direct", { durable: true });
 
-    channel.consume("test-queue", async (data) => {
+    channel.consume("seller-queue", async (data) => {
       const payload = JSON.parse(data.content.toString());
-      // console.log(payload);
       switch (payload.event) {
         case "new-seller":
           await newSeller(payload.data);
@@ -25,6 +25,18 @@ export async function connectQueue() {
         case "delete-seller":
           // await newSeller(data.content.toString());
           // channel.ack(data);
+          break;
+        default:
+          console.log("No event found");
+          break;
+      }
+    });
+    channel.consume("category-queue", async (data) => {
+      const payload = JSON.parse(data.content.toString());
+      switch (payload.event) {
+        case "new-category":
+          await category(payload.data);
+          channel.ack(data);
           break;
         default:
           console.log("No event found");
