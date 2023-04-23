@@ -1,4 +1,9 @@
 import Product from "../models/Product.js";
+import {
+  sendProduct,
+  sendEditProduct,
+  sendDeleteProduct,
+} from "../queues/rabbitMQ.js";
 
 import bodyParser from "body-parser";
 import express from "express";
@@ -34,6 +39,7 @@ export const createProduct = async (req, res) => {
       rating: 0,
     });
     const product = await newProduct.save();
+    sendProduct(product);
     res.status(201).json(product);
   } catch (err) {
     res.status(500).json(err);
@@ -92,6 +98,9 @@ export const updateProduct = async (req, res) => {
       categoryID: categoryID,
       rating: rating,
     });
+    sendEditProduct(updatedProduct);
+    //console.log(updatedProduct);
+
     res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(500).json(error);
@@ -118,6 +127,8 @@ export const updateProductNoImage = async (req, res) => {
       categoryID: categoryID,
       rating: rating,
     });
+    sendEditProduct(updatedProduct);
+    //console.log(updatedProduct);
     res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(500).json(error);
@@ -135,6 +146,7 @@ export const deleteProduct = async (req, res) => {
       sellerID: req.user.id,
       status: "active",
     });
+    sendDeleteProduct(deletedProduct);
     res.status(200).json(allProducts);
   } catch (error) {
     res.status(500).json(error);
