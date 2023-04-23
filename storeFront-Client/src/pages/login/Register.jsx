@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField ,Typography } from "@mui/material";
-import { Login } from "@mui/icons-material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { register, reset } from "../../features/auth/authSlice";
-import { toast } from "react-toastify";
 import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
 
@@ -16,7 +14,7 @@ function Register() {
     firstName: "",
     lastName: "",
     username: "",
-    phoneNumber : "",
+    phoneNumber: "",
     email: "",
     password: "",
     confpassword: "",
@@ -41,7 +39,6 @@ function Register() {
   }, [user, isError, isSuccess, dispatch, navigate, message]);
 
   function onSubmit(e) {
-
     e.preventDefault();
     if (formData.password !== formData.confpassword) {
       toast.error("Passwords do not match");
@@ -49,7 +46,7 @@ function Register() {
     }
 
     const userData = {
-        username: formData.username,
+      username: formData.username,
       firstName: formData.firstName,
       lastName: formData.lastName,
       phoneNumber: formData.phoneNumber,
@@ -65,21 +62,20 @@ function Register() {
   };
 
   return (
-
-    <Box  pt={5}  display="flex"
-    justifyContent="center"
-    // alignItems="center"
-    // minHeight="100vh"
+    <Box
+      pt={5}
+      display="flex"
+      justifyContent="center"
+      // alignItems="center"
+      // minHeight="100vh"
     >
-          
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 15 }}>
-      <Typography fontWeight="bold" fontSize="32px" color="primary">
+        <Typography fontWeight="bold" fontSize="32px" color="primary">
           Welcome to Ayusha , Register here
         </Typography>
-      
-        <Stack gap={2} width="150%">
 
-        <TextField
+        <Stack gap={2} width="150%">
+          <TextField
             required
             label="User Name"
             name="username"
@@ -138,16 +134,24 @@ function Register() {
             autoComplete="on"
           />
 
-          <Button type="submit" variant="contained" >
+          <Button type="submit" variant="contained">
             Register
           </Button>
           <center>
-
-<p className="text" style={{color: "#063970"}}>Already have an account? <span><Link to="/login" style={{fontWeight:"bold",color: "#063970"}}>Log in</Link></span></p>
-</center>
+            <p className="text" style={{ color: "#063970" }}>
+              Already have an account?{" "}
+              <span>
+                <Link
+                  to="/login"
+                  style={{ fontWeight: "bold", color: "#063970" }}
+                >
+                  Log in
+                </Link>
+              </span>
+            </p>
+          </center>
         </Stack>
       </form>
-
     </Box>
   );
 }
