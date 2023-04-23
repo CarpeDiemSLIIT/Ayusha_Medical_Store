@@ -69,7 +69,6 @@ export const changePassword = async (req, res) => {
 // incoming queue request
 export const newSeller = async (data) => {
   try {
-    console.log("new seller");
     const newSeller = new Seller({
       firstName: data.firstName,
       lastName: data.lastName,

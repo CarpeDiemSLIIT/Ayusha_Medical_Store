@@ -1,4 +1,5 @@
 import Category from "../models/Category.js";
+import { sendCategory } from "../queues/rabbitMQ.js";
 
 export const getAllCategories = async (req, res) => {
   try {
@@ -13,11 +14,13 @@ export const newCategory = async (req, res) => {
   const newCategory = new Category(category);
   try {
     await newCategory.save();
+    sendCategory(newCategory);
     res.status(201).json(newCategory);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
 };
+//TODO
 export const updateCategory = async (req, res) => {
   const categoryData = req.body;
   const { id } = req.params;
@@ -28,7 +31,6 @@ export const updateCategory = async (req, res) => {
   const updatedCategory = await Category.findByIdAndUpdate(id, categoryData, {
     new: true,
   });
-  //TODO
   res.json({ message: "Under construction" });
 };
 export const deleteCategory = async (req, res) => {

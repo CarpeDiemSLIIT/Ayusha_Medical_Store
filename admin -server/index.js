@@ -15,7 +15,7 @@ import sellerRoute from "./routes/seller.js";
 import orderRoutes from "./routes/order.js";
 import { newCategory } from "./controllers/categories.js";
 import { verifyToken } from "./middleware/authAdmin.js";
-import { connectQueue } from "./queues/seller-queue.js";
+import { connectQueue } from "./queues/rabbitMQ.js";
 
 /* configurations */
 dotenv.config();

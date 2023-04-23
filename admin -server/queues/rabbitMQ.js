@@ -11,6 +11,8 @@ export async function connectQueue() {
     channel = await connection.createChannel();
     // connect to 'test-queue', create one if doesnot exist already
     await channel.assertQueue("seller-queue", "direct", { durable: true });
+    await channel.assertQueue("category-queue", "direct", { durable: true });
+    await channel.assertQueue("order-queue", "direct", { durable: true });
   } catch (error) {
     console.log(error);
   }
@@ -23,6 +25,25 @@ export const sendSeller = async (data) => {
       Buffer.from(
         JSON.stringify({
           event: "new-seller",
+          data: data,
+        })
+      )
+    );
+  } catch (error) {
+    console.log(error);
+  }
+  // close the channel and connection
+  // await channel.close();
+  // await connection.close();
+};
+
+export const sendCategory = async (data) => {
+  try {
+    await channel.sendToQueue(
+      "category-queue",
+      Buffer.from(
+        JSON.stringify({
+          event: "new-category",
           data: data,
         })
       )

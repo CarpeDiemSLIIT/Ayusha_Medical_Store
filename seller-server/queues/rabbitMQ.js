@@ -1,6 +1,7 @@
 import amqp from "amqplib";
 var channel, connection;
 import { newSeller } from "../controllers/sellers.js";
+import { createCategory } from "../controllers/category.js";
 
 // call connectQueue function
 export async function connectQueue() {
@@ -35,7 +36,7 @@ export async function connectQueue() {
       const payload = JSON.parse(data.content.toString());
       switch (payload.event) {
         case "new-category":
-          await category(payload.data);
+          await createCategory(payload.data);
           channel.ack(data);
           break;
         default:

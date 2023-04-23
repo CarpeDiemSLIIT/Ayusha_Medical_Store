@@ -1,6 +1,6 @@
 import Seller from "../models/Seller.js";
 import bycrypt from "bcrypt";
-import { sendSeller } from "../queues/seller-queue.js";
+import { sendSeller } from "../queues/rabbitMQ.js";
 
 export const createSeller = async (req, res) => {
   const { firstName, lastName, email, password, phoneNumber } = req.body;
