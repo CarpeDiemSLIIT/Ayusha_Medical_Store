@@ -53,7 +53,7 @@ function Footer() {
                 Ayusha Store
               </Typography>
               <Stack p={1} gap={0.5} sx={{ color: "text.secondary" }}>
-                <CustomLink to="/store/aboutus">About Us</CustomLink>
+                <CustomLink >About Us</CustomLink>
 
                 <Typography paragraph>
                   <Facebook color="action" /> <Instagram color="action" />
@@ -67,9 +67,9 @@ function Footer() {
                 Quick Links
               </Typography>
               <Stack p={1} gap={0.5} sx={{ color: "text.secondary" }}>
-                <Link to="/store/myorders">My orders</Link>
-                <Link to="/store/profile/cart">Cart</Link>
-                <Link to="/store/termsandconditions">Terms & Conditions</Link>
+                <Link to="/profile/orders">My orders</Link>
+                <Link to="/profile/cart">Cart</Link>
+                <Link >Terms & Conditions</Link>
               </Stack>
             </Grid>
             <Grid item sm={4} xs={11} sx={{ color: "text.primary" }}>
