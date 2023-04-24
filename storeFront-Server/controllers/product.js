@@ -24,8 +24,6 @@ export const getProductById = async (req, res) => {
 //Create Product
 
 export const createProduct = async (productData) => {
-  console.log(productData);
-
   try {
     const newProduct = Product({
       ...productData,
@@ -58,10 +56,9 @@ export const updateProduct = async (productData) => {
 
     // res.status(200).json(updatedProduct);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
-
 
 export const updateProductNoImage = async (productData) => {
   const productID = productData.id;
@@ -82,7 +79,7 @@ export const updateProductNoImage = async (productData) => {
       // description: description,
       // categoryID: categoryID,
       // rating: rating,
-      ...productData
+      ...productData,
     });
     // sendEditProduct(updatedProduct);
     console.log(updatedProduct);
@@ -92,28 +89,19 @@ export const updateProductNoImage = async (productData) => {
   }
 };
 
-
-
-
 //delete product
 
 export const deleteProduct = async (productData) => {
-  const productID = productData.id;
+  const productID = productData.productName;
 
   try {
-    const deletedProduct = await Product.findByIdAndDelete(productID);
-   console.log(deletedProduct);
+    const deletedProduct = await Product.findOneAndDelete({
+      productName: productID,
+    });
+    console.log(deletedProduct);
     // sendDeleteProduct(deletedProduct);
     // res.status(200).json(allProducts);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
-
-
-
-
-
-
-
-

@@ -25,7 +25,6 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Form />
-        <button> register</button>
       </Box>
     </Box>
   );

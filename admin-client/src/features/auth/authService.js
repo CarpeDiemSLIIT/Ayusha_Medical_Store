@@ -22,10 +22,15 @@ const setMode = (state) => {
   localStorage.setItem("mode", state);
 };
 
+const createDefaultAdmin = async () => {
+  const response = await axios.post(API_URL + "create-default-admin");
+  return response.data;
+};
 const authService = {
   logout,
   login,
   setMode,
+  createDefaultAdmin,
 };
 
 export default authService;

@@ -39,6 +39,7 @@ export default function AllSeller() {
         }
       );
       const resData = await reqData.json();
+
       setProductdata(resData);
       //setFilterData(resData);
     };
@@ -77,6 +78,13 @@ export default function AllSeller() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {productData.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} align="center">
+                  No Sellers Found
+                </TableCell>
+              </TableRow>
+            )}
             {productData.map((productData, index) => (
               <TableRow
                 key={productData._id}

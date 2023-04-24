@@ -81,7 +81,7 @@ export default function Product() {
 
     if (getSearch.length > 0) {
       const searchProduct = productData.filter((product) =>
-        product.productName.toLowerCase().includes(getSearch)
+        product.productName.toLowerCase().includes(getSearch.toLowerCase())
       );
       setProductdata(searchProduct);
     } else {
@@ -117,6 +117,13 @@ export default function Product() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {productData.length === 0 && (
+              <TableRow colSpan={6}>
+                <TableCell component="th" scope="row">
+                  No Products Found
+                </TableCell>
+              </TableRow>
+            )}
             {productData.map((productData, index) => (
               <TableRow
                 key={productData._id}

@@ -36,6 +36,13 @@ export async function connectQueue() {
           await createProduct(payload.data);
           channel.ack(data);
           break;
+        case "edit-product":
+          channel.ack(data);
+          break;
+        case "delete-product":
+          await deleteProduct(payload.data);
+          channel.ack(data);
+          break;
         default:
           console.log("No event found");
           break;

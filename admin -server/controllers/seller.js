@@ -21,7 +21,8 @@ export const createSeller = async (req, res) => {
 
     const seller = await newSeller.save();
     sendSeller(seller);
-    res.status(201).json(seller);
+    const allSellers = await Seller.find({ status: "active" });
+    res.status(201).json(allSellers);
   } catch (err) {
     res.status(500).json(err);
   }

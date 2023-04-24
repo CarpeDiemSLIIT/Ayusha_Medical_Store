@@ -2,29 +2,23 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Admin from "../models/Admin.js";
 
-
 /* Register user */
 export const register = async (req, res) => {
   try {
-
-    const {
-     username,
-     password,
-    } = req.body;
     // hash password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash("admin", salt);
 
     // Create new user
     const newAdmin = new Admin({
-      username: username,
+      username: "admin",
       password: hashedPassword,
     });
     // Save user and respond
     const savedAdmin = await newAdmin.save();
     res.status(200).json(savedAdmin);
   } catch (err) {
-    res.status(500).json({error: err.message});
+    res.status(500).json({ error: err.message });
   }
 };
 

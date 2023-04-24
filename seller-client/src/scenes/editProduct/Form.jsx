@@ -236,6 +236,9 @@ export default function Form() {
               helperText={touched.stock && errors.stock}
               sx={{ gridColumn: "span 2" }}
             />
+            <Typography sx={{ gridColumn: "span 4" }}>
+              Site will take a commission of 10%
+            </Typography>
             <TextField
               label="Listing Price ($)"
               type="number"
