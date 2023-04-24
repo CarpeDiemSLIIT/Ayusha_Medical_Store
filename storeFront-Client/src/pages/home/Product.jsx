@@ -6,16 +6,15 @@ import AddToCartButton from "../../components/order/AddToCartButton.jsx";
 // import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Box,  Chip, Grid, Typography } from "@mui/material";
+import { Box, Chip, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import StarRating from "../../components/home/StarRating.jsx";
-import "./star.css"
-
-
+import "./star.css";
 
 const Product = () => {
   const { productID } = useParams();
   const [product, setProduct] = useState(null);
+  const [seller, setSeller] = useState(null);
 
   const getProduct = async () => {
     try {
@@ -30,9 +29,20 @@ const Product = () => {
     }
   };
 
+  const getUser = async () => {
+    try {
+      const response = await axios("" + productID.sellerID);
+
+      setSeller(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getProduct();
   }, []);
+
   // fetch data from server
   if (!product) return <div>Loading...</div>;
   return (
@@ -44,29 +54,21 @@ const Product = () => {
         <Stack gap={2}>
           <Box>
             <Typography variant="h4">{product.productName}</Typography>
-            {product.stock> 0 ? (
-              <Chip
-                color="success"
-                
-                variant="outlined"
-                label="In Stock"
-
-              />
+            {product.stock > 0 ? (
+              <Chip color="success" variant="outlined" label="In Stock" />
             ) : (
-              <Chip
-                color="error"
-              
-                variant="outlined"
-                label="Out of Stock"
-              />
+              <Chip color="error" variant="outlined" label="Out of Stock" />
             )}
+            <Typography variant="h6">
+              {seller.firstName} {seller.lastName}
+            </Typography>
           </Box>
           <StarRating />
           <Typography variant="h6">{`$ ${product.listingPrice}`}</Typography>
-        <Typography variant="body">{product.description}</Typography>
+          <Typography variant="body">{product.description}</Typography>
         </Stack>
         <Box pt={4}>
-        <AddToCartButton productID={productID} />
+          <AddToCartButton productID={productID} />
         </Box>
       </Grid>
     </Grid>
