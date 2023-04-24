@@ -5,9 +5,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+
 import productRoutes from "./routes/product.js";
 import clientRoutes from "./routes/authClient.js";
+import sellersRoutes from "./routes/sellers.js";
+
 import { connectQueue } from "./queues/rabbitMQ.js";
+
 
 /* configurations */
 
@@ -24,6 +28,7 @@ app.use(cors());
 //routes
 app.use("/api/store-front/client-auth/", clientRoutes);
 app.use("/api/store-front/product", productRoutes);
+app.use("/api/seller/sellers", sellersRoutes);
 
 //TODO remove
 async function connectQueueCall() {

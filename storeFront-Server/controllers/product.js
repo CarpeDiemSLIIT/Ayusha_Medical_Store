@@ -14,7 +14,7 @@ export const getAllProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   try {
     const { productID } = req.params;
-    const products = await Product.findById(productID);
+    const products = await Product.findById(productID).populate("sellerID");
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
