@@ -35,7 +35,7 @@ export async function connectQueue() {
       switch (payload.event) {
         case "change-status":
           await changeOrderStatus(payload.data);
-          // channel.ack(data);
+          channel.ack(data);
           break;
         default:
           console.log("No event found");
