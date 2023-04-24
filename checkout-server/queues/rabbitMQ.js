@@ -2,6 +2,7 @@ import amqp from "amqplib";
 var channel, connection;
 import { changeOrderStatus } from "../controllers/order.js";
 import { createProduct } from "../controllers/product.js";
+import { createNewUser } from "../controllers/client.js";
 
 // call connectQueue function
 export async function connectQueue() {
@@ -11,13 +12,16 @@ export async function connectQueue() {
       { clientProperties: { connection_name: "checkout-server" } }
     );
     channel = await connection.createChannel();
-    // connect to 'test-queue', create one if does not exist already
+    // all the queues and exchanges are created here
     await channel.assertQueue("order-queue-new", "direct", { durable: true });
 
     await channel.assertQueue("order-queue-change", "direct", {
       durable: true,
     });
     await channel.assertQueue("product-queue-checkoutserver", {
+      durable: true,
+    });
+    await channel.assertQueue("new-user-queue", "direct", {
       durable: true,
     });
     await channel.bindQueue(
@@ -50,6 +54,18 @@ export async function connectQueue() {
           break;
       }
     });
+    channel.consume("new-user-queue", async (data) => {
+      const payload = JSON.parse(data.content.toString());
+      switch (payload.event) {
+        case "new-user":
+          await createNewUser(payload.data);
+          channel.ack(data);
+          break;
+        default:
+          console.log("No event found");
+          break;
+      }
+    });
   } catch (error) {
     console.log(error);
   }
@@ -57,7 +73,7 @@ export async function connectQueue() {
 //TODO
 //create sendOrder to checkout server
 export const sendOrder = async (data) => {
-  console.log("sendOrder", data);
+  // console.log("sendOrder", data);
   try {
     await channel.sendToQueue(
       "order-queue-new",

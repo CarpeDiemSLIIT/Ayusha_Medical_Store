@@ -21,10 +21,15 @@ export async function connectQueue() {
 
     channel.consume("seller-queue", async (data) => {
       const payload = JSON.parse(data.content.toString());
+      // console.log(payload);
       switch (payload.event) {
         case "new-seller":
           await newSeller(payload.data);
           channel.ack(data);
+          break;
+        case "edit-seller":
+          // await newSeller(data.content.toString());
+          // channel.ack(data);
           break;
         case "delete-seller":
           // await newSeller(data.content.toString());

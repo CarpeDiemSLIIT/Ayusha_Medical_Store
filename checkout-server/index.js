@@ -32,10 +32,14 @@ app.use("/api/checkout/cart", verifyToken, cartRoutes);
 app.use("/api/checkout/address", verifyToken, addressRoutes);
 
 //TODO remove
-async function test() {
-  await connectQueue();
+async function connectQueueCall() {
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
 }
-test();
+connectQueueCall();
 
 /* Mongoose setup */
 // eslint-disable-next-line no-undef

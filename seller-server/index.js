@@ -67,7 +67,11 @@ const imageHandlingMiddleware = async (req, res, next) => {
 
 //TODO remove this
 async function connectQueueCall() {
-  await connectQueue();
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
 }
 connectQueueCall();
 

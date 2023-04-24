@@ -5,9 +5,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+
 import productRoutes from "./routes/product.js";
 import clientRoutes from "./routes/authClient.js";
 import sellersRoutes from "./routes/sellers.js";
+
+import { connectQueue } from "./queues/rabbitMQ.js";
 
 
 /* configurations */
@@ -27,7 +30,15 @@ app.use("/api/store-front/client-auth/", clientRoutes);
 app.use("/api/store-front/product", productRoutes);
 app.use("/api/seller/sellers", sellersRoutes);
 
-//same routes
+//TODO remove
+async function connectQueueCall() {
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
+}
+connectQueueCall();
 
 /* Mongoose setup */
 // eslint-disable-next-line no-undef
