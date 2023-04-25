@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4101/api/admin/auth-admin/";
+const API_URL = "http://admin-ayusha.com/api/admin/auth-admin/";
 
 // Login user
 const login = async (userData) => {

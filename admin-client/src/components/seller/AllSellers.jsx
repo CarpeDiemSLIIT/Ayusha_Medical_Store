@@ -28,7 +28,7 @@ export default function AllSeller() {
   useEffect(() => {
     const getProductdata = async () => {
       const reqData = await fetch(
-        `http://localhost:4101/api/admin/seller/all`,
+        `http://admin-ayusha.com/api/admin/seller/all`,
         {
           method: "GET",
 

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-server
+  template:
+    metadata:
+      labels:
+        app: admin-server
+    spec:
+      containers:
+        - name: admin-server
+          image: sandarum/admin-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-server-srv
+spec:
+  selector:
+    app: admin-server
+  ports:
+    - name: admin-server
+      protocol: TCP
+      port: 4101
+      targetPort: 4101

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:4101/api/admin/category/";
+const API_URL = "http://admin-ayusha.com/api/admin/category/";
 
 //Get All categories
 const getAllCategories = async (token) => {
