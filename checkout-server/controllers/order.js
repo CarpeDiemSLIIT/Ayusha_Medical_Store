@@ -58,7 +58,7 @@ export const createOrder = async (req, res) => {
     sendOrder(orderWithALlData);
 
     // don't wait for this to complete
-    axios.post("http://localhost:4901/api/send-sms-email", {
+    axios.post("http://email-sms-server-srv:3000/api/send-sms-email", {
       fullName: req.user.firstName + " " + req.user.lastName,
       orderId: newOrder._id,
       orderTotal: newOrder.orderTotal,

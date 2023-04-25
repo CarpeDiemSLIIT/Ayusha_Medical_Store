@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:4001/api/checkout/cart/";
+const API_URL = "http://ayusha-ayur.com/api/checkout/cart/";
 
 //Get Cart
 const getMyCart = async (token) => {

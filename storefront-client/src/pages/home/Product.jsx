@@ -3,12 +3,10 @@ import AddToCartButton from "../../components/order/AddToCartButton.jsx";
 // import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Box,  Chip, Grid, Typography } from "@mui/material";
+import { Box, Chip, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import StarRating from "../../components/home/StarRating.jsx";
-import "./star.css"
-
-
+import "./star.css";
 
 const Product = () => {
   const { productID } = useParams();
@@ -17,7 +15,7 @@ const Product = () => {
   const getProduct = async () => {
     try {
       const response = await axios(
-        "http://localhost:3001/api/store-front/product/" + productID
+        "http://ayusha-ayur.com/api/store-front/product/" + productID
       );
 
       setProduct(response.data);
@@ -41,29 +39,18 @@ const Product = () => {
         <Stack gap={2}>
           <Box>
             <Typography variant="h4">{product.productName}</Typography>
-            {product.stock> 0 ? (
-              <Chip
-                color="success"
-                
-                variant="outlined"
-                label="In Stock"
-
-              />
+            {product.stock > 0 ? (
+              <Chip color="success" variant="outlined" label="In Stock" />
             ) : (
-              <Chip
-                color="error"
-              
-                variant="outlined"
-                label="Out of Stock"
-              />
+              <Chip color="error" variant="outlined" label="Out of Stock" />
             )}
           </Box>
           <StarRating />
           <Typography variant="h6">{`$ ${product.listingPrice}`}</Typography>
-        <Typography variant="body">{product.description}</Typography>
+          <Typography variant="body">{product.description}</Typography>
         </Stack>
         <Box pt={4}>
-        <AddToCartButton productID={productID} />
+          <AddToCartButton productID={productID} />
         </Box>
       </Grid>
     </Grid>

@@ -16,7 +16,7 @@ const ProfileView = () => {
 
   const fetchUserData = async () => {
     const response = await fetch(
-      `http://localhost:3001/api/store-front/client-auth/${_id}`,
+      `http://ayusha-ayur.com/api/store-front/client-auth/${_id}`,
       {}
     );
     const data = await response.json();
