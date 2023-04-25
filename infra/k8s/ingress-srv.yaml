@@ -16,7 +16,7 @@ spec:
               service:
                 name: admin-server-srv
                 port:
-                  number: 4101
+                  number: 3000
 
           - path: /?(.*)
             pathType: Prefix
@@ -24,4 +24,46 @@ spec:
               service:
                 name: admin-client-srv
                 port:
-                  number: 4100
+                  number: 3000
+    - host: seller-ayusha.com
+      http:
+        paths:
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: seller-server-srv
+                port:
+                  number: 3000
+
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: seller-client-srv
+                port:
+                  number: 3000
+    - host: ayusha-ayur.com
+      http:
+        paths:
+          - path: /api/store-front/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: storefront-server-srv
+                port:
+                  number: 3000
+          - path: /api/checkout/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: checkout-server-srv
+                port:
+                  number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: storefront-client-srv
+                port:
+                  number: 3000

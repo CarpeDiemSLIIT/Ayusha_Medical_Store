@@ -56,7 +56,7 @@ export default function Form() {
   useEffect(() => {
     const getProduct = async () => {
       const reqData = await fetch(
-        `http://localhost:3101/api/seller/products/${productID}`,
+        `http://seller-ayusha.com/api/seller/products/${productID}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export default function Form() {
   const [categories, setCategories] = useState([]);
   const getCategories = async () => {
     const response = await fetch(
-      "http://localhost:3101/api/seller/products/categories"
+      "http://seller-ayusha.com/api/seller/products/categories"
     );
     const data = await response.json();
     setCategories(data);
@@ -120,7 +120,7 @@ export default function Form() {
       formData.append("imageURL", values.imageURL.name);
 
       const updatedResponse = await fetch(
-        `http://localhost:3101/api/seller/products/update/${productID}`,
+        `http://seller-ayusha.com/api/seller/products/update/${productID}`,
         {
           method: "PUT",
           headers: {
@@ -152,7 +152,7 @@ export default function Form() {
     console.log("updated");
     try {
       const loggedInResponse = await fetch(
-        `http://localhost:3101/api/seller/products/update/noImage/${productID}`,
+        `http://seller-ayusha.com/api/seller/products/update/noImage/${productID}`,
         {
           method: "PUT",
           headers: {

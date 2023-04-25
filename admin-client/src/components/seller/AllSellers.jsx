@@ -49,7 +49,7 @@ export default function AllSeller() {
   const suspendSeller = async (id) => {
     try {
       const suspendSeller = await fetch(
-        `http://localhost:4101/api/admin/seller/suspend/${id}`,
+        `http://admin-ayusha.com/api/admin/seller/suspend/${id}`,
         {
           method: "POST",
           headers: {

@@ -45,7 +45,7 @@ export default function ChangePassword({ open, handleClose }) {
       }
 
       const changePasswordRes = await fetch(
-        `http://localhost:3101/api/seller/sellers/edit/changePassword/`,
+        `http://seller-ayusha.com/seller/sellers/edit/changePassword/`,
         {
           method: "PUT",
           headers: {

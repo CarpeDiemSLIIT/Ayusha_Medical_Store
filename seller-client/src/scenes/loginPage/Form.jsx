@@ -41,7 +41,7 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     try {
       const loggedInResponse = await fetch(
-        "http://localhost:3101/api/seller/auth/login",
+        "http://seller-ayusha.com/api/seller/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

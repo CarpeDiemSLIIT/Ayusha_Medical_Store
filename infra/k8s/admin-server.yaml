@@ -26,5 +26,5 @@ spec:
   ports:
     - name: admin-server
       protocol: TCP
-      port: 4101
-      targetPort: 4101
+      port: 3000
+      targetPort: 3000

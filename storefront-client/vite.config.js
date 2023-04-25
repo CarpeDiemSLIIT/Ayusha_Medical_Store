@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
 
   server: {
-    port: 4000,
+    port: 3000,
     proxy: {
       "/assets": {
         target: "http://localhost:4001",

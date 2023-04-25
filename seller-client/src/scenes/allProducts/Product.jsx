@@ -31,7 +31,7 @@ export default function Product() {
   useEffect(() => {
     const getProductdata = async () => {
       const reqData = await fetch(
-        `http://localhost:3101/api/seller/products/all/${user._id}`,
+        `http://seller-ayusha.com/api/seller/products/all/${user._id}`,
         {
           method: "GET",
 
