@@ -7,6 +7,7 @@ import {
   CircularProgress,
   Button,
   useTheme,
+  Backdrop,
 } from "@mui/material";
 import { getMyOrders } from "../../features/order/orderService.js";
 import StatusBar from "../../components/order/StatusBar.jsx";
@@ -31,7 +32,17 @@ export default function AllOrder() {
     getOrders();
   }, []);
   if (!orders) {
-    return <CircularProgress />;
+    return (
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  }
+  if (orders.length === 0) {
+    return <>No orders</>;
   }
   return (
     <Box padding="2rem" display="flex" flexDirection="column" gap="2rem">

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: email-sms-server
-          image: sandarum/email-sms-server
+          image: sandarumadhubhashana/email-sms-server
 ---
 apiVersion: v1
 kind: Service

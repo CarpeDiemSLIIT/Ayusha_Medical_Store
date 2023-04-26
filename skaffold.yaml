@@ -62,7 +62,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: sandarum/checkout-server
+    - image: sandarumadhubhashana/checkout-server
       context: checkout-server
       docker:
         dockerfile: Dockerfile
@@ -70,7 +70,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: sandarum/email-sms-server
+    - image: sandarumadhubhashana/email-sms-server
       context: email-sms-server
       docker:
         dockerfile: Dockerfile
