@@ -52,7 +52,7 @@ export default function Product() {
   const deleteProduct = async (id) => {
     try {
       const deleteProduct = await fetch(
-        `http://localhost:3101/api/seller/products/delete/${id}`,
+        `http://seller-ayusha.com/api/seller/products/delete/${id}`,
         {
           method: "DELETE",
           headers: {

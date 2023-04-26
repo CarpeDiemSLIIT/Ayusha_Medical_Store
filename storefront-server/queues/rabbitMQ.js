@@ -49,44 +49,44 @@ export async function connectQueue() {
       }
     });
 
-    channel.consume("product-queue-storefrontserver", async (data) => {
-      const payload = JSON.parse(data.content.toString());
-      switch (payload.event) {
-        case "update-product":
-          await updateProduct(payload.data);
-          channel.ack(data);
-          break;
-        default:
-          console.log("No event found");
-          break;
-      }
-    });
+    // channel.consume("product-queue-storefrontserver", async (data) => {
+    //   const payload = JSON.parse(data.content.toString());
+    //   switch (payload.event) {
+    //     case "update-product":
+    //       await updateProduct(payload.data);
+    //       channel.ack(data);
+    //       break;
+    //     default:
+    //       console.log("No event found");
+    //       break;
+    //   }
+    // });
 
-    channel.consume("product-queue-storefrontserver", async (data) => {
-      const payload = JSON.parse(data.content.toString());
-      switch (payload.event) {
-        case "updatenoimg-product":
-          await updateProductNoImage(payload.data);
-          channel.ack(data);
-          break;
-        default:
-          console.log("No event found");
-          break;
-      }
-    });
+    // channel.consume("product-queue-storefrontserver", async (data) => {
+    //   const payload = JSON.parse(data.content.toString());
+    //   switch (payload.event) {
+    //     case "updatenoimg-product":
+    //       await updateProductNoImage(payload.data);
+    //       channel.ack(data);
+    //       break;
+    //     default:
+    //       console.log("No event found");
+    //       break;
+    //   }
+    // });
 
-    channel.consume("product-queue-storefrontserver", async (data) => {
-      const payload = JSON.parse(data.content.toString());
-      switch (payload.event) {
-        case "new-product":
-          await deleteProduct(payload.data);
-          channel.ack(data);
-          break;
-        default:
-          console.log("No event found");
-          break;
-      }
-    });
+    // channel.consume("product-queue-storefrontserver", async (data) => {
+    //   const payload = JSON.parse(data.content.toString());
+    //   switch (payload.event) {
+    //     case "new-product":
+    //       await deleteProduct(payload.data);
+    //       channel.ack(data);
+    //       break;
+    //     default:
+    //       console.log("No event found");
+    //       break;
+    //   }
+    // });
   } catch (error) {
     console.log(error);
   }
