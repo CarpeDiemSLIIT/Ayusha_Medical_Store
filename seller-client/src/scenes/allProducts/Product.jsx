@@ -92,6 +92,7 @@ export default function Product() {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <Box sx={{ gridColumn: "span 4" }}>

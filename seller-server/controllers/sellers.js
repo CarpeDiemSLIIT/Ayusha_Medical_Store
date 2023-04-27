@@ -24,7 +24,7 @@ export const editSeller = async (req, res) => {
   const lName = req.body.lastName;
   const email = req.body.email;
   //const pass = req.body.password;
-  const phone = req.body.phoneNumber;
+
   const companyName = req.body.companyName;
   const about = req.body.about;
 
@@ -34,7 +34,6 @@ export const editSeller = async (req, res) => {
       lastName: lName,
       //password: pass,
       email: email,
-      phoneNumber: phone,
       about: about,
     });
     sendEditSeller(update);

@@ -3,7 +3,7 @@ import bycrypt from "bcrypt";
 import { sendSeller } from "../queues/rabbitMQ.js";
 
 export const createSeller = async (req, res) => {
-  const { firstName, lastName, email, password, phoneNumber } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   const { id } = req.user;
 
   const salt = await bycrypt.genSalt();
@@ -15,7 +15,6 @@ export const createSeller = async (req, res) => {
       lastName: lastName,
       email: email,
       password: passwordHash,
-      phoneNumber: phoneNumber,
       createdBy: id,
     });
 

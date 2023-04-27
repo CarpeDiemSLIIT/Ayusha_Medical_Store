@@ -50,11 +50,6 @@ const Form = () => {
       );
       const loggedIn = await loggedInResponse.json();
 
-      //         if (!locationRes.ok) {
-      //             // setError("Error");
-      //               throw new Error('Location already exists!');
-      //             }
-
       onSubmitProps.resetForm();
       if (loggedIn) {
         dispatch(
@@ -66,10 +61,6 @@ const Form = () => {
         // console.log(loggedIn.seller);
         navigate(`profile/${loggedIn.seller._id}`);
       }
-
-      // if (!loggedIn.ok) {
-      //   throw new Error(loggedIn.message);
-      // }
     } catch (error) {
       setError(error.message);
     }
