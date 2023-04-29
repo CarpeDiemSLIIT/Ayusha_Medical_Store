@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-sms-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-sms-server
+  template:
+    metadata:
+      labels:
+        app: email-sms-server
+    spec:
+      containers:
+        - name: email-sms-server
+          image: sandarumadhubhashana/email-sms-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-sms-server-srv
+spec:
+  selector:
+    app: email-sms-server
+  ports:
+    - name: email-sms-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storefront-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storefront-server
+  template:
+    metadata:
+      labels:
+        app: storefront-server
+    spec:
+      containers:
+        - name: storefront-server
+          image: sandarum/storefront-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storefront-server-srv
+spec:
+  selector:
+    app: storefront-server
+  ports:
+    - name: storefront-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

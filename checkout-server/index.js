@@ -10,6 +10,8 @@ import clientRoutes from "./routes/authClient.js";
 import cartRoutes from "./routes/cart.js";
 import addressRoutes from "./routes/address.js";
 import orderRoutes from "./routes/order.js";
+import { connectQueue } from "./queues/rabbitMQ.js";
+
 /* configurations */
 
 dotenv.config();
@@ -28,6 +30,16 @@ app.use("/client-auth", clientRoutes); //TODO remove
 app.use("/api/checkout/order", verifyToken, orderRoutes);
 app.use("/api/checkout/cart", verifyToken, cartRoutes);
 app.use("/api/checkout/address", verifyToken, addressRoutes);
+
+//TODO remove
+async function connectQueueCall() {
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
+}
+connectQueueCall();
 
 /* Mongoose setup */
 // eslint-disable-next-line no-undef

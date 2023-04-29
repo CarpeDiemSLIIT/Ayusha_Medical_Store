@@ -80,7 +80,7 @@ export default function AddAProductForm() {
       formData.append("imageURL", values.imageURL.name);
 
       const saveProductResponse = await fetch(
-        `http://localhost:3101/api/seller/products/add`,
+        `http://seller-ayusha.com/api/seller/products/add`,
         {
           method: "POST",
           headers: {
@@ -111,7 +111,7 @@ export default function AddAProductForm() {
   const [categories, setCategories] = useState([]);
   const getCategories = async () => {
     const response = await fetch(
-      "http://localhost:3101/api/seller/products/categories"
+      "http://seller-ayusha.com/api/seller/products/categories"
     );
     const data = await response.json();
     setCategories(data);

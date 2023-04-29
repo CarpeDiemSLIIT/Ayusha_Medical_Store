@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const productSchema = mongoose.Schema({
   sellerID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "sellerID",
-    required: true,
+    ref: "Sellers",
   },
   productName: {
     type: String,
@@ -28,15 +27,22 @@ const productSchema = mongoose.Schema({
   },
   imageURL: {
     type: String,
-    required: true,
+    required: false,
   },
   categoryID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
+    required: false,
   },
   rating: {
     type: Number,
     required: false,
+    default: 0,
+  },
+  status: {
+    type: String,
+    default: "active",
+    required: true,
   },
 });
 

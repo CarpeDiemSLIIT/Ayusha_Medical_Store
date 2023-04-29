@@ -9,6 +9,7 @@ import { themeSettings } from "./theme";
 import SellerManagement from "./pages/SellerManagement.jsx";
 import OrderManagement from "./pages/OrderManagement.jsx";
 import CategoryManagement from "./pages/CategoryManagement.jsx";
+import DefaultAdmin from "./pages/DefaultAdmin.jsx";
 
 function App() {
   const { user, mode } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/create-default-admin" element={<DefaultAdmin />} />
             <Route path="/" element={<Navigate to="/orders/all" />} />
             <Route
               path="/"

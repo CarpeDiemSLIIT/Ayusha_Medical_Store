@@ -67,7 +67,7 @@ const NavBar = () => {
   useEffect(() => {
     const getUser = async () => {
       const reqUser = await fetch(
-        `http://localhost:3101/api/seller/sellers/${user._id}`,
+        `http://seller-ayusha.com/api/seller/sellers/${user._id}`,
         {
           method: "GET",
           headers: {

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seller-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seller-server
+  template:
+    metadata:
+      labels:
+        app: seller-server
+    spec:
+      containers:
+        - name: seller-server
+          image: sandarum/seller-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seller-server-srv
+spec:
+  selector:
+    app: seller-server
+  ports:
+    - name: seller-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

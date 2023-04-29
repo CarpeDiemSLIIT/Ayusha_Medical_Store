@@ -1,4 +1,4 @@
-import Category from "../models/category";
+import Category from "../models/Category.js";
 
 export const createCategory = async (data) => {
   try {
@@ -8,6 +8,6 @@ export const createCategory = async (data) => {
     });
     await newCategory.save();
   } catch (error) {
-    console.log();
+    console.log(error);
   }
 };

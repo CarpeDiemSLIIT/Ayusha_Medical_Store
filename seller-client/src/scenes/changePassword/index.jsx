@@ -36,16 +36,12 @@ export default function ChangePassword({ open, handleClose }) {
 
   const handleSubmit = async () => {
     try {
-      console.log(currentPassword);
-      console.log(newPassword);
-      console.log(cNewPassword);
-
       if (newPassword !== cNewPassword) {
         throw new Error("Password Mismatch!");
       }
 
       const changePasswordRes = await fetch(
-        `http://localhost:3101/api/seller/sellers/edit/changePassword/`,
+        `http://seller-ayusha.com/api/seller/sellers/edit/changePassword/`,
         {
           method: "PUT",
           headers: {

@@ -59,7 +59,7 @@ export default function Form() {
   useEffect(() => {
     const getUser = async () => {
       const reqUser = await fetch(
-        `http://localhost:3101/api/seller/sellers/${userID}`,
+        `http://seller-ayusha.com/api/seller/sellers/${userID}`,
         {
           method: "GET",
           headers: {

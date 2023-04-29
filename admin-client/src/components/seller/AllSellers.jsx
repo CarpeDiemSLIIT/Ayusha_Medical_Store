@@ -28,7 +28,7 @@ export default function AllSeller() {
   useEffect(() => {
     const getProductdata = async () => {
       const reqData = await fetch(
-        `http://localhost:4101/api/admin/seller/all`,
+        `http://admin-ayusha.com/api/admin/seller/all`,
         {
           method: "GET",
 
@@ -39,6 +39,7 @@ export default function AllSeller() {
         }
       );
       const resData = await reqData.json();
+
       setProductdata(resData);
       //setFilterData(resData);
     };
@@ -48,7 +49,7 @@ export default function AllSeller() {
   const suspendSeller = async (id) => {
     try {
       const suspendSeller = await fetch(
-        `http://localhost:4101/api/admin/seller/suspend/${id}`,
+        `http://admin-ayusha.com/api/admin/seller/suspend/${id}`,
         {
           method: "POST",
           headers: {
@@ -77,6 +78,13 @@ export default function AllSeller() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {productData.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={6} align="center">
+                  No Sellers Found
+                </TableCell>
+              </TableRow>
+            )}
             {productData.map((productData, index) => (
               <TableRow
                 key={productData._id}

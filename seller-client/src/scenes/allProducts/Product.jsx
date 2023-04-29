@@ -31,7 +31,7 @@ export default function Product() {
   useEffect(() => {
     const getProductdata = async () => {
       const reqData = await fetch(
-        `http://localhost:3101/api/seller/products/all/${user._id}`,
+        `http://seller-ayusha.com/api/seller/products/all/${user._id}`,
         {
           method: "GET",
 
@@ -52,7 +52,7 @@ export default function Product() {
   const deleteProduct = async (id) => {
     try {
       const deleteProduct = await fetch(
-        `http://localhost:3101/api/seller/products/delete/${id}`,
+        `http://seller-ayusha.com/api/seller/products/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -81,7 +81,7 @@ export default function Product() {
 
     if (getSearch.length > 0) {
       const searchProduct = productData.filter((product) =>
-        product.productName.toLowerCase().includes(getSearch)
+        product.productName.toLowerCase().includes(getSearch.toLowerCase())
       );
       setProductdata(searchProduct);
     } else {
@@ -92,6 +92,7 @@ export default function Product() {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <Box sx={{ gridColumn: "span 4" }}>
@@ -117,6 +118,13 @@ export default function Product() {
             </TableRow>
           </TableHead>
           <TableBody>
+            {productData.length === 0 && (
+              <TableRow colSpan={6}>
+                <TableCell component="th" scope="row">
+                  No Products Found
+                </TableCell>
+              </TableRow>
+            )}
             {productData.map((productData, index) => (
               <TableRow
                 key={productData._id}

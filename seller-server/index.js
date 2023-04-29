@@ -8,7 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import firebase from "firebase/compat/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { connectQueue } from "./queues/seller-queue.js";
+import { connectQueue } from "./queues/rabbitMQ.js";
 
 //for login
 import authRoutes from "./routes/auth.js";
@@ -67,7 +67,11 @@ const imageHandlingMiddleware = async (req, res, next) => {
 
 //TODO remove this
 async function connectQueueCall() {
-  await connectQueue();
+  try {
+    await connectQueue();
+  } catch (error) {
+    console.log("Rabbit MQ", error);
+  }
 }
 connectQueueCall();
 

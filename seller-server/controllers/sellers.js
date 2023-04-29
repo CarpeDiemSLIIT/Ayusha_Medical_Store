@@ -2,6 +2,8 @@ import User from "../models/Seller.js";
 import Seller from "../models/Seller.js";
 import bycrypt from "bcrypt";
 
+import { sendEditSeller, sendEditSellerPassword } from "../queues/rabbitMQ.js";
+
 //Read✅
 
 export const getSeller = async (req, res) => {
@@ -22,7 +24,7 @@ export const editSeller = async (req, res) => {
   const lName = req.body.lastName;
   const email = req.body.email;
   //const pass = req.body.password;
-  const phone = req.body.phoneNumber;
+
   const companyName = req.body.companyName;
   const about = req.body.about;
 
@@ -32,10 +34,9 @@ export const editSeller = async (req, res) => {
       lastName: lName,
       //password: pass,
       email: email,
-      phoneNumber: phone,
       about: about,
     });
-
+    sendEditSeller(update);
     res.send(update);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -60,6 +61,14 @@ export const changePassword = async (req, res) => {
     const passwordHash = await bycrypt.hash(newPassword, salt);
     seller.password = passwordHash;
     await seller.save();
+
+    const newData = {
+      id: id.id,
+      password: passwordHash,
+    };
+
+    console.log(newData);
+    sendEditSellerPassword(newData);
     res.status(200).json(seller);
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -69,7 +78,6 @@ export const changePassword = async (req, res) => {
 // incoming queue request
 export const newSeller = async (data) => {
   try {
-    console.log("new seller");
     const newSeller = new Seller({
       firstName: data.firstName,
       lastName: data.lastName,

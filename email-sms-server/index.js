@@ -65,7 +65,7 @@ app.post("/api/send-sms-email", async (req, res) => {
     await transporter.sendMail(message);
 
     const SMSdata = {
-      user_id: "24765",
+      user_id: "24840",
       api_key: process.env.SMS_API_KEY, // eslint-disable-line no-undef
       sender_id: "NotifyDEMO",
       to: phoneNumber,

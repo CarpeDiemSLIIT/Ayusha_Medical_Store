@@ -85,6 +85,13 @@ export default function CollapsibleTable({ orders }) {
           </TableRow>
         </TableHead>
         <TableBody>
+          {orders.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={6} align="center">
+                No Orders Found
+              </TableCell>
+            </TableRow>
+          )}
           {orders.map((order) => (
             <Row key={order._id} order={order} />
           ))}

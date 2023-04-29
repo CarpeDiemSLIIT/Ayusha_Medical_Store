@@ -43,7 +43,7 @@ const SellerRegistrationForm = ({ handleClose }) => {
   const newSeller = async (values, onSubmitProps) => {
     try {
       const sellerAddedRes = await fetch(
-        `http://localhost:4101/api/admin/seller/add`,
+        `http://admin-ayusha.com/api/admin/seller/add`,
         {
           method: "POST",
           headers: {

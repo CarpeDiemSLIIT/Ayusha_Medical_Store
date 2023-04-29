@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkout-server
+  template:
+    metadata:
+      labels:
+        app: checkout-server
+    spec:
+      containers:
+        - name: checkout-server
+          image: sandarumadhubhashana/checkout-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkout-server-srv
+spec:
+  selector:
+    app: checkout-server
+  ports:
+    - name: checkout-server
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,80 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: sandarum/admin-client
+      context: admin-client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+          - src: "src/**/*.jsx"
+            dest: .
+    - image: sandarum/admin-server
+      context: admin-server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: sandarum/seller-client
+      context: seller-client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+          - src: "src/**/*.jsx"
+            dest: .
+    - image: sandarum/seller-server
+      context: seller-server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: sandarum/storefront-client
+      context: storefront-client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+          - src: "src/**/*.jsx"
+            dest: .
+    - image: sandarum/storefront-server
+      context: storefront-server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: sandarumadhubhashana/checkout-server
+      context: checkout-server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
+    - image: sandarumadhubhashana/email-sms-server
+      context: email-sms-server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .

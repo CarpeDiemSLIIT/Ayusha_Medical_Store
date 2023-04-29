@@ -2,6 +2,7 @@ import Client from "../models/Client.js";
 import { Cart } from "../models/Cart.js";
 import Order from "../models/Order.js";
 import axios from "axios";
+import { sendOrder } from "../queues/rabbitMQ.js";
 
 export const createOrder = async (req, res) => {
   try {
@@ -40,8 +41,24 @@ export const createOrder = async (req, res) => {
 
     await Cart.findByIdAndUpdate(cartID, { status: "ordered" });
 
+    // send the order to the message queue
+    const orderWithALlData = await Order.findById(newOrder.id)
+      .populate("cartID")
+      .populate("addressID")
+      .populate("userID")
+      .populate({
+        path: "cartID",
+        populate: {
+          path: "cartItems.productID",
+          model: "Product",
+        },
+      });
+
+    // console.log(orderWithALlData);
+    sendOrder(orderWithALlData);
+
     // don't wait for this to complete
-    axios.post("http://localhost:4901/api/send-sms-email", {
+    axios.post("http://email-sms-server-srv:3000/api/send-sms-email", {
       fullName: req.user.firstName + " " + req.user.lastName,
       orderId: newOrder._id,
       orderTotal: newOrder.orderTotal,
@@ -82,5 +99,16 @@ export const getOrdersByUserId = async (req, res) => {
     res.status(200).json(orders);
   } catch (error) {
     res.status(404).json({ message: error.message });
+  }
+};
+
+// message queue
+export const changeOrderStatus = async (data) => {
+  try {
+    const order = await Order.findById(data.orderID);
+    order.orderStatus = data.status;
+    await order.save();
+  } catch (error) {
+    console.log(error);
   }
 };
